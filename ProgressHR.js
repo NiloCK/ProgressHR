@@ -9,11 +9,7 @@ function ProgressHR() {
     for (var i = 0; i < progressItems.length; i++) {
         var article = progressItems[i];
         
-        var totalLength = article.innerHTML.length;
-        var contentLength = article.textContent.length;
         var blackSpaceLength = article.textContent.replace(/\s/g, '').length;
-        console.log("Total length: " + totalLength);
-        console.log("textContent Length: " + contentLength);
         console.log("Blackspace Length: " + blackSpaceLength);
 
         var itemHrs = [];
