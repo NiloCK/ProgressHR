@@ -4,20 +4,21 @@ function ProgressHR() {
     console.log("There are " + progressItems.length + " ProgressItem(s)");
     var hrs = document.getElementsByTagName('hr');
     console.log("There are " + hrs.length + " HR tags.");
-    Debug.write("this is being debugged");
 
     for (var i = 0; i < progressItems.length; i++) {
+        // todo: factor this out to a fcn ProgHRArticle(article){}
         var article = progressItems[i];
         
         var blackSpaceLength = article.textContent.replace(/\s/g, '').length;
         console.log("Blackspace Length: " + blackSpaceLength);
 
+        // better to encapsulate an HR class?
         var itemHrs = [];
-        var cumulativeLengths = [];
+        var cumulativeLengths = []; // not needed?
         var percentages = [];
         var cumulativeLength = 0;
 
-        // bad perf here in a 'big' page
+        // bad perf here in a 'big' page.
         for (var j = 0; j < hrs.length; j++) {
             if (hrs[j].parentNode === article) {
                 console.log("child HR");
@@ -43,6 +44,9 @@ function ProgressHR() {
             }
         }
 
-        console.log("There are " + itemHrs.length + " HRs in this item.");
+        // a (bad) example of 'the idea'
+        for (var j = 0; j < itemHrs.length; j++) {
+            itemHrs[j].style.width = "" + Math.floor(100*percentages[j]) + "%";
+        }
     }
 };
