@@ -1,4 +1,35 @@
-﻿
+﻿/**
+ * @constructor
+ * @param {HTMLelement} hr - the HR to be converted
+ * @param {Number} percent - the percentage to be represented
+ */
+function PHR(hr, percent) {
+
+    this.hr = hr;
+    this.percent = percent;
+
+    this.progress = function () {
+
+        var div = document.createElement('div');
+        div.style.width = '60%';
+        div.style.height = '5px';
+        div.style.backgroundColor = 'black';
+        div.style.margin = '0 auto';
+        
+
+        var inner = document.createElement('div');
+        inner.style.width = '' + percent + '%';
+        inner.style.height = '5px';
+        inner.style.backgroundColor = 'orange';
+
+        div.appendChild(inner);
+
+        hr.parentNode.replaceChild(div, hr);
+        this.hr = null;
+        this.percent = null;
+    };
+}
+
 function ProgressHR() {
     var progressItems = document.getElementsByClassName("ProgressHR");
     console.log("There are " + progressItems.length + " ProgressItem(s)");
@@ -14,11 +45,10 @@ function ProgressHR() {
 
         // better to encapsulate an HR class?
         var itemHrs = [];
-        var cumulativeLengths = []; // not needed?
         var percentages = [];
         var cumulativeLength = 0;
 
-        // bad perf here in a 'big' page.
+        // bad perf here in a 'big' page. (eg, a page with many HRs)
         for (var j = 0; j < hrs.length; j++) {
             if (hrs[j].parentNode === article) {
                 console.log("child HR");
@@ -28,15 +58,13 @@ function ProgressHR() {
             }
         }
         console.log("There are " + itemHrs.length + " sections.");
-
         
         var hrIndex = 0;
         for (var j = 0; j < article.childNodes.length; j++) {
             if (article.childNodes[j] === itemHrs[hrIndex]) {
-                cumulativeLengths.push(cumulativeLength);
-                percentages.push(cumulativeLength / blackSpaceLength);
+                percentages.push(100 * cumulativeLength / blackSpaceLength);
                 console.log("Section " + hrIndex + " has length: " + cumulativeLength +
-                    ", " + (100 * percentages[hrIndex]) + "%.");
+                    ", " + (percentages[hrIndex]) + "%.");
                 hrIndex++;
             }
             else {
@@ -46,7 +74,8 @@ function ProgressHR() {
 
         // a (bad) example of 'the idea'
         for (var j = 0; j < itemHrs.length; j++) {
-            itemHrs[j].style.width = "" + Math.floor(100*percentages[j]) + "%";
+            //itemHrs[j].style.width = "" + Math.floor(percentages[j]) + "%";
+            new PHR(itemHrs[j], percentages[j]).progress();
         }
     }
 };
