@@ -9,10 +9,11 @@ function PHR(hr, percent) {
     this.percent = percent;
 
     this.progress = function () {
+        // todo: determin BG color of the area itself
 
         var div = document.createElement('div');
         div.style.width = '60%';
-        div.style.height = '5px';
+        div.style.height = '5px'; 
         div.style.backgroundColor = 'black';
         div.style.margin = '0 auto';
         
