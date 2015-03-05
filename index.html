@@ -1,6 +1,11 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="Content/bootstrap.min.css" />
+    <script src="Scripts/bootstrap.js"></script>
+
     <script src="ProgressHR.js"></script>
     <script>
         window.onload = ProgressHR;
@@ -8,14 +13,29 @@
     <title></title>
 </head>
 <body>
-    <div class="ProgressHR">
-        <hr />
-        This is some text.
-        <hr />
-        This is also some text.
-        <hr />
-        Finally, the closing text.
-        <hr />
-    </div>
+    <div class="container">
+        <div class="row"><h1>ProgressHR</h1></div>
+        <p>A widget for producing 'progress aware' &lt;hr> elements as text breaks in long documents, providing feedback which may be useful for the reader.</p>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Usage</h3>
+                ...
+                <h3>Code</h3>
+                ...
+            </div>
+            <div class="col-md-6">
+                <h3>Example:</h3>
+                <div class="ProgressHR">
+                    <hr />
+                    This is some text.
+                    <hr />
+                    This is also some text.
+                    <hr />
+                    Finally, the closing text.
+                    <hr />
+                </div>
+            </div>
+        </div>
+    </div class="container">
 </body>
 </html>
