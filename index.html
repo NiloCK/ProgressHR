@@ -4,12 +4,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="Content/bootstrap.min.css" />
-    <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/Highlight/highlight.pack.js"></script>
+    <link href="Content/Highlight/solarized_dark.css" rel="stylesheet" />
+    <!--<script src="Scripts/bootstrap.js"></script>-->
 
     <script src="ProgressHR.js"></script>
     <script>
         function init() {
-            ProgressHR();
+            ProgressHR(); // todo: replace/supplment with a phr.initPHROnLoad ala below
+            hljs.initHighlighting();
         }
 
         window.onload = init;
@@ -25,6 +28,14 @@
                 <h3>Usage</h3>
                 ...
                 <h3>Code</h3>
+<pre>
+<code class="javascript monokai">
+        function init() {
+            ProgressHR();
+        }
+        window.onload = init;
+</code>
+</pre>
                 ...
             </div>
             <div class="col-md-6">
@@ -40,6 +51,6 @@
                 </div>
             </div>
         </div>
-    </div class="container">
+    </div>
 </body>
 </html>
