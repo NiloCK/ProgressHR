@@ -11,8 +11,9 @@
     <script src="ProgressHR.js"></script>
     <script>
         function init() {
-            ProgressHR(); // todo: replace/supplment with a phr.initPHROnLoad ala below
-            hljs.initHighlighting();
+            ProgressHR({bgColor: 'red', barColor: 'orange', innerHeight: 6, width: 40}); // todo: replace/supplment with a phr.initPHROnLoad ala below
+            //hljs.initHighlighting();
+            hljs.highlightBlock(document.getElementById('code'));
         }
 
         window.onload = init;
@@ -28,13 +29,11 @@
                 <h3>Usage</h3>
                 ...
                 <h3>Code</h3>
-<pre>
-<code class="javascript monokai">
-        function init() {
-            ProgressHR();
-        }
-        window.onload = init;
-</code>
+<pre class="pre" id="code">
+function init() {
+    ProgressHR();
+}
+window.onload = init;
 </pre>
                 ...
             </div>
