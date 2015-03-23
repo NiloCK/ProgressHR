@@ -9,28 +9,48 @@ function PHR(hr, percent) {
     this.percent = percent;
 
     this.progress = function (options) {
-        // todo: determin BG color of the area itself
-        this.options = options || { bg: 'black', bar: 'orange' };
+        this.options = {};
 
-        var div = document.createElement('div');
-        div.style.backgroundColor = this.options.bg;
-        div.style.borderRadius = '5px';
-        div.style.padding = '2px';
+        for (var key in this.defaults) {
+            if (this.defaults.hasOwnProperty(key)) {
+                this.options[key] = options[key] || this.defaults[key];
+            }
+        }
 
+        var outer = document.createElement('div');
         var inner = document.createElement('div');
 
+        if (this.options.bgColor === null ||
+            this.options.barColor === null) {
+            //todo detect/set colors
+        }
+        else {
+            outer.style.backgroundColor = this.options.bgColor;
+            inner.style.backgroundColor = this.options.barColor;
+        }
+        
+        outer.style.width = this.options.width + '%';
+        outer.style.borderRadius = '5px';
+        outer.style.padding = '2px';
+
         inner.style.width = '' + percent + '%';
-        inner.style.height = '2px';
-        inner.style.borderRadius = '2px';
-        inner.style.backgroundColor = this.options.bar;
+        inner.style.height = this.options.innerHeight + 'px';
+        inner.style.borderRadius = (this.options.innerHeight / 2) + 'px';
+        
 
-        div.appendChild(inner);
+        outer.appendChild(inner);
 
-        hr.parentNode.replaceChild(div, hr);
-        //this.hr = null;
-        //this.percent = null;
+        hr.parentNode.replaceChild(outer, hr);
     };
 }
+
+PHR.prototype.defaults = {
+    width: 80,      // 80% width
+    bgColor: null,  // null colors result in 'auto coloring'
+    barColor: null,
+    height: 5,
+    innerHeight: 2
+};
 
 function ProgressHR(options) {
 
