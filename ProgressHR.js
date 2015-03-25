@@ -90,6 +90,6 @@
             //phr(itemHrs[j], percentages[j]);
             defaults.fcn(itemHrs[j], percentages[j]);
         }
-    }        
+    } 
 };
 
